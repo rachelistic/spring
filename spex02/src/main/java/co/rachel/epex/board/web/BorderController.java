@@ -27,24 +27,24 @@ public class BorderController {
 		
 	}
 	
-	@RequestMapping("/border/input")
-			public String input() {
+	@RequestMapping("/border/input") //입력폼을 호출한다. 
+	public String input() {
 		
-			return "border/input";
+			return "border/input"; 
 	}
-	@RequestMapping("/border/borderinput")
+	@RequestMapping("/border/borderinput") //디비에 저장하는 메소드 (.do가 들어가면 맵퍼명, 그냥은 메소드명, 그냥은 jsp페이지명) 
 	public String borderinput(BorderVo vo, Model model) {
 		int n = 0;
 		String viewPath = null;
 		n = borderService.insert(vo);
 		if(n !=0) {
-			viewPath="border/successinput";
+			viewPath="redirect:list"; //맵퍼명
 		}else {
 			viewPath="border/inputfail";
 		}
 
 		
-		return viewPath;
+		return viewPath; //입력한 후 목록으로 돌려준다.
 	}
 
 

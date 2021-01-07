@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+<!-- DATA Base Connection ㅖool -->
+<context:property-placeholder location="classpath:datasource.propertise" />
+<bean id="datasource" class="org.apache.commons.dbcp2.BasicDataSource"> <!-- 뭐쳐야 이게 나왓지?  -->
+<!-- 베이직 데이타 소스 였당 !   -->
+<property name="driverClassName" value="${driver}" />
+<property name="url" value="${url}"/>
+<property name="username" value="${user}"/>
+<property name="password" value="${password}"/>
+</bean>
+
+<!--제디비씨템플릿침  -->
+<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+<property name="dataSource" ref="datasource" />
+</bean>
+
+</beans>

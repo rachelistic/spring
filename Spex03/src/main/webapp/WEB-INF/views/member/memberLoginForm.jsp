@@ -8,6 +8,7 @@
 </head>
 <body>
 <div class="loginfrm" id="loginfrm" align="center">
+<form id="log" action="memberLogin.do">
 <table>
 <tr>
 <th>아이디</th>
@@ -20,10 +21,11 @@
 <tr>
 <td></td>
 <td>
-<input id="login" type="button" value="로그인">
+<input id="login" type="submit" value="로그인">
 </td>
 </tr>
 </table>
+</form>
 </div>
 </body>
 </html>

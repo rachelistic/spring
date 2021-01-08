@@ -49,7 +49,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public boolean memberLoginCheck(MemberVo vo) throws SQLException{
+	public MemberVo memberLoginCheck(MemberVo vo) throws SQLException{
 		// TODO Auto-generated method stub
 		return dao.memberLoginCheck(vo);
 	}

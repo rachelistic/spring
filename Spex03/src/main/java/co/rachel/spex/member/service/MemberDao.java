@@ -1,5 +1,6 @@
 package co.rachel.spex.member.service;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,13 +45,34 @@ public class MemberDao implements MemberService{
 		return jdbcTemplate.update(sql, vo.getMemberId());
 	}
 	@Override
-	public boolean memberLoginCheck(MemberVo vo) {
-		boolean check= false;
-		String sql = "SELECT COUNT(*) FROM MEMBER WHERE MEMBERID=? AND PASSWORD=?";
-		Object[]args = {vo.getMemberId(), vo.getPassword()};
-		int n = jdbcTemplate.queryForObject(sql, args, Integer.class);
-		if (n!=0) check = true;
-		return check;
+	public MemberVo memberLoginCheck(MemberVo vo) {
+		
+		String sql1 = "SELECT COUNT(*) FROM MEMBER WHERE MEMBERID=? AND PASSWORD=?"; 
+		Object[]args1 ={vo.getMemberId(), vo.getPassword()};
+		int n = jdbcTemplate.queryForObject(sql1, args1, Integer.class); 
+		
+		if (n!=0){ 
+			String msg = "있는 아이디";
+			System.out.println(msg);
+			String sql2 = "SELECT * FROM MEMBER WHERE MEMBERID = ? AND PASSWORD=?";
+			Object[] args2 = {vo.getMemberId(),vo.getPassword()};
+			return jdbcTemplate.queryForObject(sql2, args2,new MemberRowMapper());
+		}else {
+			String msg = "없는 아이디";
+			System.out.println(msg);
+			vo.setMemberauth("NA");
+			return vo ;
+		}
+		
+		
+				
+		/*
+		 * boolean check= false; String sql =
+		 * "SELECT COUNT(*) FROM MEMBER WHERE MEMBERID=? AND PASSWORD=?"; Object[]args =
+		 * {vo.getMemberId(), vo.getPassword()}; int n =
+		 * jdbcTemplate.queryForObject(sql, args, Integer.class); if (n!=0) check =
+		 * true; return check;
+		 */
 	}
 	 
 	

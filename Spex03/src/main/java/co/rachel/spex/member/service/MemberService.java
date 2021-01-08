@@ -10,7 +10,7 @@ public interface MemberService {
 	int memberUpdate(MemberVo vo) throws SQLException;
 	int memberDelete(MemberVo vo) throws SQLException;
 	
-	boolean memberLoginCheck(MemberVo vo) throws SQLException; //맴버 로그인 체크
+	MemberVo memberLoginCheck(MemberVo vo) throws SQLException; //맴버 로그인 체크
 	
 
 }

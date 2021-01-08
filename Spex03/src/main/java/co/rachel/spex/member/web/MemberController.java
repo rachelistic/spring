@@ -3,6 +3,9 @@ package co.rachel.spex.member.web;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -77,6 +80,43 @@ public class MemberController {
 			viewPath = "member/memberInsertFail";
 		return viewPath;
 	}
-	@RequstMapping("/memberLoginForm.do")
-	pub
+	
+	@RequestMapping("/memberLoginForm.do")
+	public String memberLoginForm(){
+			return "member/memberLoginForm";
+	}
+	
+	
+	@RequestMapping("/memberLogin.do")
+	public String MemberLoginForm(String uid, String upw, Model model, HttpServletRequest request) throws SQLException {
+	MemberVo vo = new MemberVo();
+	vo.setMemberId(uid);
+	vo.setPassword(upw);
+	System.out.println("아이디는"+uid+"패스워드는"+upw);
+	HttpSession session = request.getSession(false);
+	String viewPath ="null";
+	
+	vo = memberService.memberLoginCheck(vo);
+	
+	System.out.println("테스트" + vo.getMemberauth());
+	if(vo.getMemberauth() != "") {
+		session.setAttribute("sid",vo.getMemberId());
+		session.setAttribute("sname",vo.getMemberName());	
+		session.setAttribute("spw",vo.getPassword());
+		session.setAttribute("sauth", vo.getMemberauth());
+		session.setAttribute("point", vo.getMemberpoint());
+		}
+	
+		model.addAttribute("vo",vo);
+		viewPath="member/welcomePage";
+		return viewPath;
+	}
+	
+	@RequestMapping("/memberLogout.do")
+	public String MemberLogout(Model model, HttpServletRequest request) throws SQLException {
+		HttpSession session = request.getSession(false);
+		session.invalidate();
+		return "member/memberLoginForm";
+	}
+	
 }

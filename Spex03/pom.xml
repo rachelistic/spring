@@ -33,14 +33,14 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-<!-- 스프링코어 설치! -->
+		<!-- 스프링코어 설치! -->
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
 
-<dependency>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-jdbc</artifactId>
-          <version>${org.springframework-version}</version>
-      </dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
 
 
 		<!-- AspectJ -->
@@ -140,6 +140,12 @@
 			<version>19.9.0.0</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>2.0.6</version>
+		</dependency>
 
 		<!-- Test -->
 		<dependency>
@@ -186,5 +192,8 @@
 				</configuration>
 			</plugin>
 		</plugins>
+
+
+
 	</build>
 </project>
